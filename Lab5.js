@@ -119,5 +119,17 @@ const Lab5 = (app) => {
     todo.completed = req.body.completed;
     res.sendStatus(200);
   });
+  app.put("/a5/todos/:id/completed/:completed", (req, res) => {
+    const { id, completed } = req.params;
+    const todo = todos.find((t) => t.id === parseInt(id));
+    todo.completed = completed;
+    res.sendStatus(200);
+  });
+  app.put("/a5/todos/:id/description/:description", (req, res) => {
+    const { id, description } = req.params;
+    const todo = todos.find((t) => t.id === parseInt(id));
+    todo.description = description
+    res.sendStatus(200);
+  });
 };
 export default Lab5;
