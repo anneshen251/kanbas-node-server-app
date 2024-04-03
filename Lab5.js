@@ -25,12 +25,12 @@ const Lab5 = (app) => {
   app.get("/a5/module/name", (req, res) => {
     res.json(module.name);
   });
-  app.put("/a5/module/name/:newName", (req, res) => {
+  app.get("/a5/module/name/:newName", (req, res) => {
     const { newName } = req.params;
     module.name = newName;
     res.json(module);
   });
-  app.put("/a5/module/description/:newDesc", (req, res) => {
+  app.get("/a5/module/description/:newDesc", (req, res) => {
     const { newDesc } = req.params;
     module.description = newDesc;
     res.json(module);
@@ -91,12 +91,12 @@ const Lab5 = (app) => {
     assignment.title = newTitle;
     res.json(assignment);
   });
-  app.put("/a5/assignment/score/:newScore", (req, res) => {
+  app.get("/a5/assignment/score/:newScore", (req, res) => {
     const { newScore } = req.params;
     assignment.score = newScore;
     res.json(assignment);
   });
-  app.put("/a5/assignment/completed/:newCompleted", (req, res) => {
+  app.get("/a5/assignment/completed/:newCompleted", (req, res) => {
     const { newCompleted } = req.params;
     assignment.completed = newCompleted;
     res.json(assignment);
