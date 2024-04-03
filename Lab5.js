@@ -23,7 +23,7 @@ const Lab5 = (app) => {
     res.json(module);
   });
   app.get("/a5/module/name", (req, res) => {
-    res.send(module.name);
+    res.json(module.name);
   });
   app.put("/a5/module/name/:newName", (req, res) => {
     const { newName } = req.params;
