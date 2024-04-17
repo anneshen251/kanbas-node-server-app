@@ -68,7 +68,7 @@ export default function UserRoutes(app) {
         globalCurrentUser = currentUser;
         res.json(currentUser);
       } else {
-        res.sendStatus(401);
+        res.status(401).json({ message: 'Invalid username or password' });
       }
     } catch (error) {
       console.error(error);
