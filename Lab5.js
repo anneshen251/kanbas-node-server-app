@@ -9,7 +9,32 @@ const todos = [
   { id: 3, title: "Task 3", completed: false },
   { id: 4, title: "Task 4", completed: true },
 ];
+const module = [
+  {
+  _id: "M103",
+  name: "Nozzle Design",
+  description:
+    "Principles of rocket nozzle design and performance optimization.",
+  course: "RS101",
+  }
+];
 const Lab5 = (app) => {
+  app.get("/a5/module", (req, res) => {
+    res.json(module);
+  });
+  app.get("/a5/module/name", (req, res) => {
+    res.json(module.name);
+  });
+  app.get("/a5/module/name/:newName", (req, res) => {
+    const { newName } = req.params;
+    module.name = newName;
+    res.json(module);
+  });
+  app.get("/a5/module/description/:newDesc", (req, res) => {
+    const { newDesc } = req.params;
+    module.description = newDesc;
+    res.json(module);
+  });
   app.get("/a5/todos", (req, res) => {
     const { completed } = req.query;
     if (completed !== undefined) {
@@ -66,6 +91,16 @@ const Lab5 = (app) => {
     assignment.title = newTitle;
     res.json(assignment);
   });
+  app.get("/a5/assignment/score/:newScore", (req, res) => {
+    const { newScore } = req.params;
+    assignment.score = newScore;
+    res.json(assignment);
+  });
+  app.get("/a5/assignment/completed/:newCompleted", (req, res) => {
+    const { newCompleted } = req.params;
+    assignment.completed = newCompleted;
+    res.json(assignment);
+  });
   app.get('/a5/welcome', (req, res) => {
     res.send('Welcome to Assignment 5');
   });
@@ -117,6 +152,18 @@ const Lab5 = (app) => {
     todo.description = req.body.description;
     todo.due = req.body.due;
     todo.completed = req.body.completed;
+    res.sendStatus(200);
+  });
+  app.put("/a5/todos/:id/completed/:completed", (req, res) => {
+    const { id, completed } = req.params;
+    const todo = todos.find((t) => t.id === parseInt(id));
+    todo.completed = completed;
+    res.sendStatus(200);
+  });
+  app.put("/a5/todos/:id/description/:description", (req, res) => {
+    const { id, description } = req.params;
+    const todo = todos.find((t) => t.id === parseInt(id));
+    todo.description = description
     res.sendStatus(200);
   });
 };
